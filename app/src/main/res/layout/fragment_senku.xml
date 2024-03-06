@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgrounsenku"
+    android:scaleType="centerCrop"
+    android:gravity="center">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:text="Senku"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <!-- Temporizador -->
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:padding="8dp"
+        android:text="00:00"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <!-- Botón Ultimo Movimiento -->
+    <Button
+        android:id="@+id/lastMoveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:text="Ultimo Movimiento"
+        android:backgroundTint="#2196F3"
+        android:enabled="false"/>
+
+    <!-- Grid View del Senku -->
+    <GridView
+        android:id="@+id/senkuTileList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timerTextView"
+        android:numColumns="7"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="5dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="48dp">
+    </GridView>
+
+    <!-- Botón para volver -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/senkuTileList"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="72dp"
+        android:text="Volver"
+        android:backgroundTint="#2196F3"/>
+
+    <!-- Botón para reiniciar -->
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/senkuTileList"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="38dp"
+        android:text="Reiniciar"
+        android:backgroundTint="#2196F3"/>
+</RelativeLayout>

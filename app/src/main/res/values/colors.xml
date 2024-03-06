@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorNumero2">#EEE4DA</color>
+    <color name="colorNumero4">#EDE0C8</color>
+    <color name="colorNumero8">#F2B179</color>
+    <color name="colorNumero16">#F59563</color>
+    <color name="colorNumero32">#F67C5F</color>
+    <color name="colorNumero64">#F65E3B</color>
+    <color name="colorNumero128">#EDCF72</color>
+    <color name="colorNumero256">#EDCC61</color>
+    <color name="colorNumero512">#EDC850</color>
+    <color name="colorNumero1024">#A4ED73</color>
+    <color name="colorNumero2048">#73EDA4</color>
+    <color name="colorCasillaVacia">#A09085</color>
+    <color name="senkuTile">#0055FF</color>
+    <color name="selectedSenkuTile">#9C27B0</color>
+    <color name="emptySenkuTile">#D54FA8F1</color>
+</resources>

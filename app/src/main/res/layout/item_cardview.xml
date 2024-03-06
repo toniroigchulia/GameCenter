@@ -1,0 +1,57 @@
+<!-- item_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/backgroundcardview"
+    android:layout_margin="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/text_view_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Test"/>
+
+        <TextView
+            android:id="@+id/text_view_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Record: "
+            android:layout_marginStart="180dp"/>
+
+        <TextView
+            android:id="@+id/text_view_recordnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="right"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="0"/>
+
+    </LinearLayout>
+
+    <!-- Icono -->
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="348dp"
+        android:layout_height="174dp"
+        android:src="@drawable/backgroundsenkucard"
+        android:scaleType="fitXY"/>
+</LinearLayout>

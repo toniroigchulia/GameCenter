@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2048"
+    android:scaleType="centerCrop"
+    android:gravity="center">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="2048"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <!-- Layout para puntajes -->
+    <LinearLayout
+        android:id="@+id/Scores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/title"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp">
+
+        <!-- Layout para el puntaje actual -->
+        <LinearLayout
+            android:id="@+id/currentScoreLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="32dp"
+            android:background="@drawable/backgorund2048scores">
+
+            <!-- Título del puntaje actual -->
+            <TextView
+                android:id="@+id/currentScoreTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+
+            <!-- Puntaje actual -->
+            <TextView
+                android:id="@+id/currentScorePuntos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <!-- Layout para el puntaje máximo -->
+        <LinearLayout
+            android:id="@+id/maxScoreLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="15dp"
+            android:background="@drawable/backgorund2048scores">
+
+            <!-- Título del puntaje máximo -->
+            <TextView
+                android:id="@+id/maxScoreTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max Score"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+
+            <!-- Puntaje máximo -->
+            <TextView
+                android:id="@+id/maxScorePuntos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- GridView -->
+    <GridView
+        android:id="@+id/tileList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Scores"
+        android:numColumns="4"
+        android:background="@drawable/backgorund2048scores"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp">
+    </GridView>
+
+    <!-- Botón para volver -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tileList"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="38dp"
+        android:text="Volver"
+        android:backgroundTint="#7E7167"/>
+
+    <!-- Botón para reiniciar -->
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tileList"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="38dp"
+        android:text="Reiniciar"
+        android:backgroundTint="#7E7167"/>
+</RelativeLayout>
