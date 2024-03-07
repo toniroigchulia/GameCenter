@@ -19,15 +19,30 @@
         android:textStyle="bold"
         android:textColor="@color/white"/>
 
+    <!-- Titulo Temporizador -->
+    <TextView
+        android:id="@+id/timerTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:padding="8dp"
+        android:paddingBottom="0dp"
+        android:text="Current Time"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
     <!-- Temporizador -->
     <TextView
         android:id="@+id/timerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/titleTextView"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/timerTitleTextView"
         android:layout_marginStart="48dp"
         android:padding="8dp"
+        android:paddingTop="1dp"
         android:text="00:00"
         android:textSize="24sp"
         android:textColor="@color/white"
@@ -38,13 +53,44 @@
         android:id="@+id/lastMoveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/titleTextView"
+        android:layout_below="@+id/timerTitleTextView"
+        android:layout_alignRight="@+id/timerTextView"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
-        android:text="Ultimo Movimiento"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginRight="-122dp"
         android:backgroundTint="#2196F3"
-        android:enabled="false"/>
+        android:enabled="false"
+        android:text="UltMov" />
+
+    <!--Record Title Temporizador -->
+    <TextView
+        android:id="@+id/timerRecordTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="235dp"
+        android:padding="8dp"
+        android:paddingBottom="0dp"
+        android:text="Record Time"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <!--Record Temporizador -->
+    <TextView
+        android:id="@+id/timerRecordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timerRecordTitleTextView"
+        android:layout_marginStart="265dp"
+        android:padding="8dp"
+        android:paddingTop="1dp"
+        android:text="00:00"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
     <!-- Grid View del Senku -->
     <GridView
@@ -55,7 +101,7 @@
         android:numColumns="7"
         android:horizontalSpacing="8dp"
         android:verticalSpacing="5dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="48dp">
     </GridView>
 

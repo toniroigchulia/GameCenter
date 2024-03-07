@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/backgroundladerboards"
+    android:scaleType="centerCrop"
+    android:gravity="center"
+    android:id="@+id/menu">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="LEADERBOARD"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <!-- LinearLayout para mostrar los encabezados -->
+    <LinearLayout
+        android:id="@+id/headersLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:orientation="horizontal"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp">
+
+        <!-- Texto para "Nombre" -->
+        <TextView
+            android:id="@+id/textViewNameHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="start"/>
+
+        <!-- Texto para "2048" -->
+        <TextView
+            android:id="@+id/textView2048Header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2048"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="end"/>
+
+        <!-- Texto para "Senku" -->
+        <TextView
+            android:id="@+id/textViewSenkuHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Senku"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="end"/>
+
+    </LinearLayout>
+
+    <!-- RecyclerView para mostrar los elementos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBoard"
+        android:layout_below="@+id/headersLayout"
+        android:layout_width="match_parent"
+        android:layout_height="540dp"
+        android:padding="8dp"
+        android:layout_marginBottom="26dp"/>
+
+    <!-- Botón para volver -->
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerViewBoard"
+        android:layout_centerHorizontal="true"
+        android:text="Volver"
+        android:backgroundTint="#05022C"
+        android:textStyle="bold"/>
+</RelativeLayout>

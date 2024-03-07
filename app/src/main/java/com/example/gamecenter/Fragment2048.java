@@ -10,9 +10,15 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.gamecenter.BD.GameDB;
+import com.example.gamecenter.BD.Usuario;
+
 import org.w3c.dom.Text;
 
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 public class Fragment2048 extends Fragment implements View.OnTouchListener {
 
@@ -23,20 +29,41 @@ public class Fragment2048 extends Fragment implements View.OnTouchListener {
     private static final int MIN_DISTANCE = 150;
     private TextView currentScore;
     private boolean playing = true;
+    GameDB db;
+    private ExecutorService executor;
+    private Usuario usuario;
+
+    private TextView score;
+    private TextView maxScore;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_2048, container, false);
-        tileList = rootView.findViewById(R.id.tileList);
-        currentScore = rootView.findViewById(R.id.currentScorePuntos);
+        try {
 
-        initGame();
-        setUtilButtons(rootView);
+            tileList = rootView.findViewById(R.id.tileList);
+            score = rootView.findViewById(R.id.currentScorePuntos);
+            maxScore = rootView.findViewById(R.id.maxScorePuntos);
+            currentScore = rootView.findViewById(R.id.currentScorePuntos);
 
-        tileAdapter = new Adapter2048(getActivity(), matrizToArray(tileNumbers));
-        tileList.setAdapter(tileAdapter);
-        tileList.setOnTouchListener(this);
+            this.db = ((MainActivity) requireActivity()).db;
+            this.executor = ((MainActivity) requireActivity()).executor;
+            this.usuario = ((MainActivity) requireActivity()).user;
+
+            maxScore.setText(String.valueOf(usuario.getBestScore2048()));
+
+            initGame();
+            setUtilButtons(rootView);
+
+            tileAdapter = new Adapter2048(getActivity(), matrizToArray(tileNumbers));
+            tileList.setAdapter(tileAdapter);
+            tileList.setOnTouchListener(this);
+
+
+        } catch (Exception e) {
+            System.out.println("Error crear view 2048: " + e);
+        }
 
         return rootView;
     }
@@ -268,9 +295,25 @@ public class Fragment2048 extends Fragment implements View.OnTouchListener {
     }
 
     public void endGame() {
-        playing = false;
-        GameMessage messageFragment = new GameMessage(2);
-        messageFragment.show(getChildFragmentManager(), "game_message_fragment");
+        try {
+            playing = false;
+            GameMessage messageFragment = new GameMessage(2);
+            messageFragment.show(getChildFragmentManager(), "game_message_fragment");
+
+            if(Integer.valueOf(String.valueOf(score.getText())) > Integer.valueOf(String.valueOf(maxScore.getText()))){
+                maxScore.setText(score.getText());
+                usuario.setBestScore2048(Integer.valueOf(String.valueOf(score.getText())));
+                ((MainActivity) requireContext()).setUser(usuario);
+                executor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.UpdateUserDAO().updateUser(usuario);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            System.out.println("Error end game 2048: " + e);
+        }
     }
 
     @Override

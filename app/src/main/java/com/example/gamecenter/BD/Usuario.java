@@ -8,10 +8,10 @@ public class Usuario{
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String user = null;
-    private String email = null;
     private byte[] fotoPerfil = null;
     private String password = null;
-    private int bestScore = 0;
+    private int bestScore2048 = 0;
+    private int bestTimeSenku = 0;
 
     public int getId() {
         return id;
@@ -27,14 +27,6 @@ public class Usuario{
 
     public void setUser(String user) {
         this.user = user;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public byte[] getFotoPerfil() {
@@ -53,11 +45,19 @@ public class Usuario{
         this.password = password;
     }
 
-    public int getBestScore() {
-        return bestScore;
+    public int getBestScore2048() {
+        return bestScore2048;
     }
 
-    public void setBestScore(int bestScore) {
-        this.bestScore = bestScore;
+    public void setBestScore2048(int bestScore2048) {
+        this.bestScore2048 = bestScore2048;
+    }
+
+    public int getBestTimeSenku() {
+        return bestTimeSenku;
+    }
+
+    public void setBestTimeSenku(int bestTimeSenku) {
+        this.bestTimeSenku = bestTimeSenku;
     }
 }

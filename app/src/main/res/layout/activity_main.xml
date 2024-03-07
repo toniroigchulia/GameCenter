@@ -6,7 +6,8 @@
     tools:context=".MainActivity"
     android:background="@drawable/backgroundgamecenter"
     android:scaleType="centerCrop"
-    android:gravity="center">
+    android:gravity="center"
+    android:id="@+id/menu">
 
     <!-- Título -->
     <TextView
@@ -15,8 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="GAME CENTER"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:textSize="48sp"
         android:textStyle="bold"
         android:textColor="@color/white"/>
@@ -26,12 +27,53 @@
         android:id="@+id/recyclerView"
         android:layout_below="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"/>
+        android:layout_height="540dp"
+        android:padding="8dp"
+        android:layout_marginBottom="26dp"/>
 
     <!-- Contenedor de fragmentos -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <!-- Botón para cerrar sesión -->
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerView"
+        android:layout_toStartOf="@+id/textViewUsername"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:text="Cerrar Session"
+        android:backgroundTint="#05022C"
+        android:textStyle="bold"/>
+
+    <!-- Texto del nombre de usuario -->
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/recyclerView"
+        android:layout_marginStart="16dp"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
+    <!-- Botón de leaderboards -->
+    <Button
+        android:id="@+id/btnLeaderboards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leaderboards"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/textViewUsername"
+        android:layout_below="@+id/recyclerView"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#05022C"
+        android:textStyle="bold"/>
 </RelativeLayout>

@@ -9,7 +9,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.example.gamecenter.BD.GameDB;
+import com.example.gamecenter.BD.Usuario;
+
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
 
 public class FragmentSenku extends Fragment {
 
@@ -23,6 +28,12 @@ public class FragmentSenku extends Fragment {
     private static final long START_TIME_IN_MILLIS = 10 * 60 * 1001;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private Button lastMove;
+    private TextView currentTime;
+    private TextView recordTime;
+
+    GameDB db;
+    private ExecutorService executor;
+    private Usuario usuario;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,6 +43,15 @@ public class FragmentSenku extends Fragment {
         tileList = rootView.findViewById(R.id.senkuTileList);
         lastMove = rootView.findViewById(R.id.lastMoveButton);
         timerTextView = rootView.findViewById(R.id.timerTextView);
+
+        currentTime = rootView.findViewById(R.id.timerTextView);
+        recordTime = rootView.findViewById(R.id.timerRecordTextView);
+
+        this.db = ((MainActivity) requireActivity()).db;
+        this.executor = ((MainActivity) requireActivity()).executor;
+        this.usuario = ((MainActivity) requireActivity()).user;
+
+        recordTime.setText(milisegundosATiempoCadena(usuario.getBestTimeSenku()));
         startTimer();
 
         setUtilButtons(rootView);
@@ -42,16 +62,16 @@ public class FragmentSenku extends Fragment {
                                     int position, long id) {
                 SenkuTile[] senkuTilesArrayClick = matrizToArray(senkuTiles);
                 if (!senkuTilesArrayClick[position].isCorner() && playing){
-                    // Comprobamos si el jugador ha ganado
-                    if (checkWin(senkuTilesArrayClick)) {
-                        endGame(1);
-                    }
-
                     // Movimiento si nos queremos mover a una casilla con posible movimiento
                     if (senkuTilesArrayClick[position].isPossible() && playing){
                         setSenkuArrayAnterior(senkuTilesArrayClick);
                         senkuTilesArrayClick = realizateMove(senkuTilesArrayClick, position);
                         senkuTilesArrayClick[position].setEmpty(false);
+                    }
+
+                    // Comprobamos si el jugador ha ganado
+                    if (checkWin(senkuTilesArrayClick)) {
+                        endGame(1);
                     }
 
                     // Comprabamos si no se pueden realizar mas movimientos
@@ -311,10 +331,11 @@ public class FragmentSenku extends Fragment {
         boolean oneBall = false;
 
         for (int i = 0; i < senkuTiles.length; i++) {
-            if(!senkuTiles[i].isEmpty() && !oneBall) {
+            System.out.println(!senkuTiles[i].isEmpty() + " " + !senkuTiles[i].isCorner());
+            if(!senkuTiles[i].isEmpty() && !oneBall && !senkuTiles[i].isCorner()) {
 
                 oneBall = true;
-            } else if (!senkuTiles[i].isEmpty() && oneBall) {
+            } else if (!senkuTiles[i].isEmpty() && oneBall && !senkuTiles[i].isCorner()) {
 
                 return false;
             }
@@ -353,12 +374,21 @@ public class FragmentSenku extends Fragment {
         playing = false;
         lastMove.setEnabled(false);
         stopTimer();
-    }
-    public SenkuTile[][] getSenkuTiles() {
-        return senkuTiles;
-    }
 
-    public SenkuTile[] getSenkuArrayAnterior() {return this.senkuArrayAnterior; }
+        if(caso == 1){
+            if((tiempoCadenaAMilisegundos(String.valueOf(currentTime.getText()))) > (tiempoCadenaAMilisegundos(String.valueOf(recordTime.getText())))){
+                recordTime.setText(String.valueOf(currentTime.getText()));
+                usuario.setBestTimeSenku(tiempoCadenaAMilisegundos(String.valueOf(recordTime.getText())));
+                ((MainActivity) requireContext()).setUser(usuario);
+                executor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.UpdateUserDAO().updateUser(usuario);
+                    }
+                });
+            }
+        }
+    }
 
     public void setSenkuArrayAnterior(SenkuTile[] newSenkuArrayAnterior){
         this.senkuArrayAnterior = Arrays.copyOf(newSenkuArrayAnterior, newSenkuArrayAnterior.length);
@@ -366,5 +396,18 @@ public class FragmentSenku extends Fragment {
             this.senkuArrayAnterior[i] = new SenkuTile(newSenkuArrayAnterior[i]);
         }
         lastMove.setEnabled(true);
+    }
+
+    public int tiempoCadenaAMilisegundos(String tiempoCadena) {
+        String[] partes = tiempoCadena.split(":");
+        int minutos = Integer.parseInt(partes[0]);
+        int segundos = Integer.parseInt(partes[1]);
+        return (minutos * 60 + segundos) * 1000;
+    }
+
+    public String milisegundosATiempoCadena(int milisegundos) {
+        int minutos = (int) (milisegundos / 1000) / 60;
+        int segundos = (int) (milisegundos / 1000) % 60;
+        return String.format("%02d:%02d", minutos, segundos);
     }
 }

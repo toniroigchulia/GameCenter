@@ -28,7 +28,7 @@
         android:textColor="@color/white"/>
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/usernameLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre de usuario"
@@ -39,12 +39,12 @@
         android:textColorHint="@color/white"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:layout_below="@id/username"
+        android:layout_below="@id/usernameLogin"
         android:layout_marginTop="28dp"
         android:layout_marginHorizontal="30dp"
         android:textColor="@color/white"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iniciar Sesión"
-        android:layout_below="@id/password"
+        android:layout_below="@id/passwordLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:backgroundTint="#05022C"/>
