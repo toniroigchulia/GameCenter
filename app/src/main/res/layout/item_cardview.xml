@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- Título -->
         <TextView
             android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
@@ -32,7 +31,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Record: "
-            android:layout_marginStart="180dp"/>
+            android:layout_marginStart="100dp"/>
 
         <TextView
             android:id="@+id/text_view_recordnum"
@@ -44,10 +43,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="0"/>
-
     </LinearLayout>
 
-    <!-- Icono -->
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="348dp"

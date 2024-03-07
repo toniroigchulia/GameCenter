@@ -67,7 +67,7 @@
         android:layout_below="@id/senkuTileList"
         android:layout_alignParentStart="true"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="68dp"
         android:text="Volver"
         android:backgroundTint="#2196F3"/>
 

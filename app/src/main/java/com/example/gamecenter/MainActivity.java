@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private List<DataItem> dataList;
     private MainAdapter adapter;
     private boolean isRecyclerViewVisible;
+    public boolean isInLoginOrRegisterFragment = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         recyclerView = findViewById(R.id.recyclerView);
+        loginScreen();
         dataList = generateData();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -34,25 +36,27 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Fragment fragment = null;
-                isRecyclerViewVisible = false;
-                recyclerView.setVisibility(View.GONE);
-                switch (position) {
-                    case 0:
-                        fragment = new FragmentSenku();
-                        break;
-                    case 1:
-                        fragment = new Fragment2048();
-                        break;
-                    default:
-                        break;
-                }
+                if (recyclerView.getVisibility() == View.VISIBLE) {
+                    Fragment fragment = null;
+                    isRecyclerViewVisible = false;
+                    recyclerView.setVisibility(View.GONE);
+                    switch (position) {
+                        case 0:
+                            fragment = new FragmentSenku();
+                            break;
+                        case 1:
+                            fragment = new Fragment2048();
+                            break;
+                        default:
+                            break;
+                    }
 
-                if (fragment != null) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, fragment)
-                            .addToBackStack(null)
-                            .commit();
+                    if (fragment != null) {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
                 }
             }
         });
@@ -77,15 +81,32 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i <= 1; i++) {
             switch (i) {
                 case 0:
-                    data.add(new DataItem("Senku", R.drawable.backgroundsenkucard));
+                    data.add(new DataItem("Senku", R.drawable.backgroundsenkucard, "10"));
                     break;
                 case 1:
-                    data.add(new DataItem("2048", R.drawable.backgroundcard2048));
+                    data.add(new DataItem("2048", R.drawable.backgroundcard2048, "10"));
                     break;
                 default:
                     break;
             }
         }
         return data;
+    }
+
+    private void loginScreen() {
+        recyclerView.setVisibility(View.GONE);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new FragmentLogin())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isInLoginOrRegisterFragment) {
+            // Ignorada
+        } else {
+            super.onBackPressed();
+        }
     }
 }
